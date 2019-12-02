@@ -142,8 +142,11 @@ def playing_the_baseball_game():
 if __name__== "__main__":
 
     print('신나는 야구 게임!' + '\n' + '1. 데이터 입력' + '\n' + '2. 데이터 출력')
+    selectedMenu = input("메뉴선택 (1 - 2) ")   # 메뉴 선택값 받기
 
-    playing_the_baseball_game()
+    print(selectedMenu)
+
+#    playing_the_baseball_game()
 
 
     
