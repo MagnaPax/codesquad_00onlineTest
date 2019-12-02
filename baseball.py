@@ -141,7 +141,7 @@ def playing_the_baseball_game():
 
 if __name__== "__main__":
 
-    print('신나는 야구 게임!' + '\n' + '첫 번째 타자가 타석에 입장했습니다.')
+    print('신나는 야구 게임!' + '\n' + '1. 데이터 입력' + '\n' + '2. 데이터 출력')
 
     playing_the_baseball_game()
 
