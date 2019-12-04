@@ -138,6 +138,14 @@ def playing_the_baseball_game():
 
 
 
+
+
+
+
+
+
+
+
 # 값을 받아서 숫자라면 True 문자라면 False 반환
 def isNumber(s):
     try:
@@ -157,6 +165,7 @@ def isEmpty(s):
         return False
 
 
+
 # 팀 이름 저장 함수
 def input_team_name(i):
 
@@ -164,45 +173,31 @@ def input_team_name(i):
 
         teamName = input("%d팀의 이름을 입력하세요> " % i)   # 팀 이름 입력받기
 
-        if not isEmpty(teamName):   # 아무런 값이 입력되지 않았다면 정보 입력 다시 받기
-            continue                # 루프로 하지 않고 재귀함수를 사용할 때 에러 발생
-            # input_team_name(i)
-        else:
-            break
+        if not isEmpty(teamName): continue  # 아무런 값이 입력되지 않았다면 정보 입력 다시 받기
+        else: break                         # 값이 입력됐다면 루프 빠져나가기
+            
 
     return teamName     # 팀 이름 리턴
-
-
-
-
 
 
 
 # 입력된 선수 정보가 제대로 들어왔는지 확인. 잘못된 값이면 False 리턴
 def playerInfo_error_check(infoPlayer):
 
-    if isNumber(infoPlayer[0]) == True:
-        print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
-        return False
-
-    elif isNumber(infoPlayer[1]) == False:
-        print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
-        return False
+    if isNumber(infoPlayer[0]) == True: return False        # 선수 이름이 잘못 입력됨
+    elif isNumber(infoPlayer[1]) == False: return False     # 타율에 숫자가 아닌 문자가 잘못 입력됨
 
     else:
-        typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
-        if (0.1 <= typeChangedBAValue <= 0.5):
-            print('옳은 값')
-            return True
-        else:
-            print('타율 범위 값을 넘어갔습니다')
-            return False
+        typeChangedBAValue = float(infoPlayer[1])               # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
 
-
+        if (0.1 <= typeChangedBAValue <= 0.5): return True      # 타율이 제대로 된 범위 안에 있음   
+        else: return False                                      # 타율이 제대로 된 범위 값을 넘어갔음
+            
 
 
 # 선수 정보 받기
 def input_hitter_info(howManyHittersSoFar):
+
     while(1):
         infoPlayer = input("%d번 타자 정보 입력> " % howManyHittersSoFar)
 
@@ -217,11 +212,6 @@ def input_hitter_info(howManyHittersSoFar):
         else:
             infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
             return infoPlayer
-
-
-
-                    
-
 
 
 
@@ -284,6 +274,6 @@ if __name__== "__main__":
         i = 1
         while i <= 9:
             print(i,"번 선수", "\n이름: ",infoPlayers_1st[0][i], "\n타율:",infoPlayers_1st[1][i])
-        i+=1
+            i+=1
 
 
