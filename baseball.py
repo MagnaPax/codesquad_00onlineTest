@@ -162,8 +162,8 @@ def input_team_name(i):
 
         teamName = input("%d팀의 이름을 입력하세요> " % i)   # 팀 이름 입력받기
 
-        if not isEmpty(teamName): # 아무런 값이 입력되지 않았다면 정보 입력 다시 받기
-            continue
+        if not isEmpty(teamName):   # 아무런 값이 입력되지 않았다면 정보 입력 다시 받기
+            continue                # 루프로 하지 않고 재귀함수를 사용할 때 에러 발생
             # input_team_name(i)
         else:
             break
@@ -171,23 +171,51 @@ def input_team_name(i):
     return teamName     # 팀 이름 리턴
 
 
+
+
+# 입력된 선수 정보가 제대로 들어왔는지 확인. 잘못된 값이면 False 리턴
+def playerInfo_error_check(infoPlayer):
+
+    if isNumber(infoPlayer[0]) == True:
+        print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
+        #continue
+        return False
+
+    elif isNumber(infoPlayer[1]) == False:
+        print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
+        #continue
+        return False
+    else:
+        typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
+        if (0.1 <= typeChangedBAValue <= 0.5):
+            print('옳은 값')
+            return True
+        else:
+            print('타율 범위 값을 넘어갔습니다')
+            return False
+
+
+'''
 # 타자 정보 입력받고 입력받은 값 리턴
-def input_player_info(i):
+def input_hitter_info(i):
 
     while(1):
 
         infoPlayer = input("%d번 타자 정보 입력> " % i)
 
         if not isEmpty(infoPlayer): # 아무런 값이 입력되지 않았다면 입력 다시 받기
-            input_player_info(i)
+            continue
+        else:
+            break
 
-        infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
+    infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
 
     return infoPlayer
+'''
 
 
-# 타자 정보 입력받기
-def aaaaaaaaaaa():
+# 9명의 선수 정보 입력받기
+def input_nine_hitters_info():
     
     i = 1
     while i <= 9:
@@ -199,22 +227,28 @@ def aaaaaaaaaaa():
             continue
 
         infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
+        
+        infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
 
-        print(type(infoPlayer))
+        errorChecked = playerInfo_error_check(infoPlayer)   # 입력받은 타자 정보가 올바른지 체크
 
-
-
-        if isNumber(infoPlayer[0]) == True:
-            print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
+        if not errorChecked:            # 입력받은 타자 정보가 올바르지 않다면 입력 다시 받기
             continue
 
-        elif isNumber(infoPlayer[1]) == False:
-            print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
-            continue
         else:
-            typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
-            if (0.1 <= typeChangedBAValue <= 0.5):
-                print('옳은 값')
+            print(infoPlayer)
+
+        # if isNumber(infoPlayer[0]) == True:
+        #     print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
+        #     continue
+
+        # elif isNumber(infoPlayer[1]) == False:
+        #     print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
+        #     continue
+        # else:
+        #     typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
+        #     if (0.1 <= typeChangedBAValue <= 0.5):
+        #         print('옳은 값')
                     
         print(i)
         i+=1
@@ -226,16 +260,8 @@ def aaaaaaaaaaa():
     # return theListOfTemaInfo
 
 
-
-if __name__== "__main__":
-
-    # 리스트 값 선언 & 초기화
-    namePlayer = [0]
-    battingAveragePlayer = [0]
-    infoPlayers_1st = [namePlayer, battingAveragePlayer]
-    infoPlayers_2nd = [namePlayer, battingAveragePlayer]
-
-    print('신나는 야구 게임!' + '\n' + '1. 데이터 입력' + '\n' + '2. 데이터 출력')
+# 메뉴 선택한 뒤 선택한 값 리턴하기
+def choose_Menu():
 
     while(1):        
         selectedMenu = input("메뉴선택 (1 - 2) ")   # 메뉴 선택값 받기
@@ -245,6 +271,25 @@ if __name__== "__main__":
         else:                           # 메뉴가 골라졌다면 루프 탈출
             break
 
+
+    return selectedMenu
+
+
+
+
+if __name__== "__main__":
+
+    # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
+    namePlayer = [0]
+    battingAveragePlayer = [0]
+    infoPlayers_1st = [namePlayer, battingAveragePlayer]
+    infoPlayers_2nd = [namePlayer, battingAveragePlayer]
+
+    print('신나는 야구 게임!' + '\n' + '1. 데이터 입력' + '\n' + '2. 데이터 출력')
+
+    # 메뉴 선택하기
+    selectedMenu = choose_Menu()
+     
     # 메뉴에서 1번을 선택했다면 팀 정보를 입력받기
     if selectedMenu == '1':
 
@@ -258,14 +303,19 @@ if __name__== "__main__":
 
 
         # 1번 팀의 9명의 선수 정보 입력받기
+        input_nine_hitters_info()
+
+        '''
         i = 1
         while i <= 9:
 
-            playerInfo = input_player_info(i)   # 선수 정보 받기
+            playerInfo = input_hitter_info(i)   # 선수 정보 받기
             print("선수정보\n", playerInfo)
+
+
             print(i)
             i+=1
-
+        '''
 
         '''
         # 2번 팀의 팀 이름을 리스트[0][0] 에 넣기
