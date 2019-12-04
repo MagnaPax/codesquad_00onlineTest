@@ -236,9 +236,10 @@ def choose_Menu():
 
         if not isEmpty(selectedMenu):   # 아무런 값이 입력되지 않았다면 입력 다시 받기
             continue
+        elif isNumber(selectedMenu) == False:   # 숫자 대신 문자가 입력됐다면 입력 다시 받기
+            continue
         else:                           # 메뉴가 골라졌다면 루프 탈출
             break
-
 
     return selectedMenu
 
