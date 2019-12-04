@@ -242,11 +242,11 @@ def define_List_dimensions():
 
 
 # 팀이름, 선수이름 입력받아서 배열에 넣기
-def input_all_info_team():
+def input_all_info_team(teamNumber):
 
-    temaInfoList = define_List_dimensions()     # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
+    temaInfoList = define_List_dimensions() # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
     
-    teamName = input_team_name(1)           # 팀 이름 입력받은 함수 호출. 받은 이름을 변수에 넣기
+    teamName = input_team_name(teamNumber)  # 팀 이름 입력받은 함수 호출. 받은 이름을 변수에 넣기
     temaInfoList[0][0] = teamName           # 팀 이름을 리스트[0][0] 에 넣기
     
     i = 1
@@ -261,53 +261,55 @@ def input_all_info_team():
 
 
 
+# 옵션에서 2번을 선택했을 때 팀 정보 표시하기
+def print_out_teams_info(temaInfo):
+
+    print(temaInfo[0][0], "팀 정보\n")
+    i = 1
+    while i <= 9:
+        print(i,"번 ",temaInfo[0][i], ", ",temaInfo[1][i])
+        i+=1
+
+    return
+
+
+
 
 if __name__== "__main__":
-    '''
-    # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
-    namePlayer = [0,0,0,0,0,0,0,0,0,0]
-    battingAveragePlayer = [0,0,0,0,0,0,0,0,0,0]
-    infoPlayers_1st = [namePlayer, battingAveragePlayer]
-    infoPlayers_2nd = [namePlayer, battingAveragePlayer]
-    '''
-    print('신나는 야구 게임!' + '\n1. 데이터 입력' + '\n2. 데이터 출력' + '\n3. 시합 시작\n')
 
-    # 메뉴 선택하기
-    selectedMenu = choose_Menu()
-     
-    # 메뉴에서 1번을 선택했다면 팀 정보를 입력받기
-    if selectedMenu == '1':
+    while(1):
+        print('신나는 야구 게임!' + '\n1. 데이터 입력' + '\n2. 데이터 출력' + '\n3. 시합 시작\n')
 
-        infoPlayers_1st = input_all_info_team()
+        # 메뉴 선택하기
+        selectedMenu = choose_Menu()
+        
+        # 메뉴에서 1번을 선택했다면 팀 정보를 입력받기
+        if selectedMenu == '1':
 
-        '''
-        # 1번 팀의 팀 이름을 리스트[0][0] 에 넣기
-        teamName = input_team_name(1)
-        infoPlayers_1st[0][0] = teamName
-        print("팀이름 : ", infoPlayers_1st[0][0])
+            teamInfo_1st = input_all_info_team(1)     # 첫 번째 팀 정보 입력 받아서 배열에 저장
+            print()
+            teamInfo_2nd = input_all_info_team(2)     # 두 번째 팀 정보 입력 받아서 배열에 저장
+            print('팀 데이터 입력이 완료되었습니다.\n')
+            continue
 
+        # 메뉴에서 2번을 선택했다면 팀 정보 표시하기
+        elif selectedMenu == '2':
+            print_out_teams_info(teamInfo_1st)
+            print()
+            print_out_teams_info(teamInfo_2nd)
+            print()
+            continue
 
-        # 1번 팀의 9명의 선수 정보 입력받기
-        i = 1
-        while i <= 9:
+            # if not isEmpty(teamInfo_1st): continue          # 아무런 값이 입력되지 않았다면 입력 다시 받기
 
-            infoPlayer = input_hitter_info(i)       # 선수 정보 입력
-            # print("메인으로 넘어온 값\n",infoPlayer)
+        
+            '''
+            print("팀이름: ", teamInfo_1st[0][0])
+            i = 1
+            while i <= 9:
+                print(i,"번 선수", "\n이름: ",teamInfo_1st[0][i], "\n타율:",teamInfo_1st[1][i])
+                i+=1
+            '''
 
-            infoPlayers_1st[0][i] = infoPlayer[0]
-            infoPlayers_1st[1][i] = infoPlayer[1]
-            # print(i,"번 선수", "\n이름: ",infoPlayers_1st[0][i], "\n타율:",infoPlayers_1st[1][i])
-            # print(infoPlayers_1st[0][i], infoPlayers_1st[1][i])
-
-
-            # print("i값: ", i)
-            i+=1
-        '''
-
-        i = 1
-        while i <= 9:
-            print("팀이름: ", infoPlayers_1st[0][0])
-            print(i,"번 선수", "\n이름: ",infoPlayers_1st[0][i], "\n타율:",infoPlayers_1st[1][i])
-            i+=1
-
+        elif selectedMenu == '3': break
 
