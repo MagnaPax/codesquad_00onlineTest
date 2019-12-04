@@ -195,23 +195,6 @@ def playerInfo_error_check(infoPlayer):
             return False
 
 
-'''
-# 타자 정보 입력받고 입력받은 값 리턴
-def input_hitter_info(i):
-
-    while(1):
-
-        infoPlayer = input("%d번 타자 정보 입력> " % i)
-
-        if not isEmpty(infoPlayer): # 아무런 값이 입력되지 않았다면 입력 다시 받기
-            continue
-        else:
-            break
-
-    infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
-
-    return infoPlayer
-'''
 
 
 # 9명의 선수 정보 입력받기
@@ -238,26 +221,11 @@ def input_nine_hitters_info():
         else:
             print(infoPlayer)
 
-        # if isNumber(infoPlayer[0]) == True:
-        #     print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
-        #     continue
 
-        # elif isNumber(infoPlayer[1]) == False:
-        #     print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
-        #     continue
-        # else:
-        #     typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
-        #     if (0.1 <= typeChangedBAValue <= 0.5):
-        #         print('옳은 값')
                     
         print(i)
         i+=1
 
-
-    # theListOfTemaInfo.append(4)
-
-    # print("함수 안에서 출력\n",theListOfTemaInfo)
-    # return theListOfTemaInfo
 
 
 # 메뉴 선택한 뒤 선택한 값 리턴하기
@@ -305,60 +273,3 @@ if __name__== "__main__":
         # 1번 팀의 9명의 선수 정보 입력받기
         input_nine_hitters_info()
 
-        '''
-        i = 1
-        while i <= 9:
-
-            playerInfo = input_hitter_info(i)   # 선수 정보 받기
-            print("선수정보\n", playerInfo)
-
-
-            print(i)
-            i+=1
-        '''
-
-        '''
-        # 2번 팀의 팀 이름을 리스트[0][0] 에 넣기
-        teamName = input_team_name(2)
-        infoPlayers_2nd[0][0] = teamName
-        print("팀이름 : ", infoPlayers_2nd[0][0])
-        '''
-
-
-
-'''
-        # 각 팀의 정보 입력 받기
-        i = 1
-        while i <= 9:
-            
-            print("%d팀의 이름을 입력하세요> " % (n_strike, n_ball, n_out))
-            print(i)
-            i+=1
-
-'''
-
-    
-
-
-
-
-
-
-
-
-'''
-def print_method():
-    print('\n'+'your')
-
-
-if __name__== "__main__":
-
-    
-    var = input("Please enter something: ")
-    print("You entered: " + var)
-    
-
-    print('I am ', end='', flush = True)
-
-    print_method()
-'''
