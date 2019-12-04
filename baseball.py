@@ -229,15 +229,47 @@ def choose_Menu():
 
 
 
+# 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
+def define_List_dimensions():
+    
+    namePlayer = [0,0,0,0,0,0,0,0,0,0]
+    battingAveragePlayer = [0,0,0,0,0,0,0,0,0,0]
+    temaInfoList = [namePlayer, battingAveragePlayer]
+
+    return temaInfoList
+
+
+
+
+# 팀이름, 선수이름 입력받아서 배열에 넣기
+def input_all_info_team():
+
+    temaInfoList = define_List_dimensions()     # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
+    
+    teamName = input_team_name(1)           # 팀 이름 입력받은 함수 호출. 받은 이름을 변수에 넣기
+    temaInfoList[0][0] = teamName           # 팀 이름을 리스트[0][0] 에 넣기
+    
+    i = 1
+    while i <= 9:                           # 팀의 9명의 선수 정보 입력받기
+
+        infoPlayer = input_hitter_info(i)   # 선수 정보 입력
+        temaInfoList[0][i] = infoPlayer[0]  # 선수 이름을 배열에 입력
+        temaInfoList[1][i] = infoPlayer[1]  # 선수 타율을 배열에 입력
+        i+=1
+
+    return temaInfoList
+
+
+
 
 if __name__== "__main__":
-
+    '''
     # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
     namePlayer = [0,0,0,0,0,0,0,0,0,0]
     battingAveragePlayer = [0,0,0,0,0,0,0,0,0,0]
     infoPlayers_1st = [namePlayer, battingAveragePlayer]
     infoPlayers_2nd = [namePlayer, battingAveragePlayer]
-
+    '''
     print('신나는 야구 게임!' + '\n1. 데이터 입력' + '\n2. 데이터 출력' + '\n3. 시합 시작\n')
 
     # 메뉴 선택하기
@@ -246,9 +278,9 @@ if __name__== "__main__":
     # 메뉴에서 1번을 선택했다면 팀 정보를 입력받기
     if selectedMenu == '1':
 
-        # print(infoPlayers_1st[0][0])
+        infoPlayers_1st = input_all_info_team()
 
-
+        '''
         # 1번 팀의 팀 이름을 리스트[0][0] 에 넣기
         teamName = input_team_name(1)
         infoPlayers_1st[0][0] = teamName
@@ -270,9 +302,11 @@ if __name__== "__main__":
 
             # print("i값: ", i)
             i+=1
+        '''
 
         i = 1
         while i <= 9:
+            print("팀이름: ", infoPlayers_1st[0][0])
             print(i,"번 선수", "\n이름: ",infoPlayers_1st[0][i], "\n타율:",infoPlayers_1st[1][i])
             i+=1
 
