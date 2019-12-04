@@ -225,7 +225,7 @@ def input_hitter_info(howManyHittersSoFar):
 def choose_Menu():
 
     while(1):        
-        selectedMenu = input("메뉴선택 (1 - 2) ")   # 메뉴 선택값 받기
+        selectedMenu = input("메뉴선택 (1 - 3) ")   # 메뉴 선택값 받기
 
         if not isEmpty(selectedMenu):   # 아무런 값이 입력되지 않았다면 입력 다시 받기
             continue
@@ -249,7 +249,7 @@ if __name__== "__main__":
     infoPlayers_1st = [namePlayer, battingAveragePlayer]
     infoPlayers_2nd = [namePlayer, battingAveragePlayer]
 
-    print('신나는 야구 게임!' + '\n' + '1. 데이터 입력' + '\n' + '2. 데이터 출력')
+    print('신나는 야구 게임!' + '\n1. 데이터 입력' + '\n2. 데이터 출력' + '\n3. 시합 시작\n')
 
     # 메뉴 선택하기
     selectedMenu = choose_Menu()
@@ -271,8 +271,7 @@ if __name__== "__main__":
         while i <= 9:
 
             infoPlayer = input_hitter_info(i)       # 선수 정보 입력
-            # print("메인으로 넘어온 값\n",infoPlayer[0], "\n",infoPlayer[1])
-            infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
+            print("메인으로 넘어온 값\n",infoPlayer[0], "\n",infoPlayer[1])
 
             print("메인으로 넘어온 값\n",infoPlayer)
 
