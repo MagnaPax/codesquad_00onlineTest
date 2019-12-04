@@ -139,16 +139,15 @@ def print_out_teams_info(temaInfo):
 ###                                             경기시작                                                    ###
 ##############################################################################################################
 
-# 경기 결과 값을 무작위로 선택
-def making_random_result():
-    baseball_options = ['스트라이크', '볼', '안타', '아웃']
-    randomResult = random.choice(baseball_options)
-#    print(randomResult)
-    return randomResult
+# 경기 결과 값을 선수의 타율에 따라 계산 후 리턴
+def result_plate_appearance():
+
+    return result
 
 
 # 게임 시작 함수
 def startGame(teamInfo_1st, teamInfo_2nd):
+    print(teamInfo_1st[0][0], "VS", teamInfo_2nd[0][0], "의 시합을 시작합니다.")
     return
 
 
