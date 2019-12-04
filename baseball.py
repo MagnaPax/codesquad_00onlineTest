@@ -136,18 +136,156 @@ def playing_the_baseball_game():
 
 
 
+# 값을 받아서 숫자라면 True 문자라면 False 반환
+def isNumber(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+
+# 받은 변수에 무엇이든 들어있으면 True 반환. 값이 들어있지 않은 빈 리스트이면 False 반환
+def isEmpty(s):
+    if s:        
+        return True
+    elif not s:
+        # print('아무런 값도 입력되지 않았습니다.\n')
+        return False
+
+
+# 팀 이름 저장 함수
+def input_team_name(i):
+
+    while(1):
+
+        teamName = input("%d팀의 이름을 입력하세요> " % i)   # 팀 이름 입력받기
+
+        if not isEmpty(teamName): # 아무런 값이 입력되지 않았다면 정보 입력 다시 받기
+            continue
+            # input_team_name(i)
+        else:
+            break
+
+    return teamName     # 팀 이름 리턴
+
+
+# 타자 정보 입력받고 입력받은 값 리턴
+def input_player_info(i):
+
+    while(1):
+
+        infoPlayer = input("%d번 타자 정보 입력> " % i)
+
+        if not isEmpty(infoPlayer): # 아무런 값이 입력되지 않았다면 입력 다시 받기
+            input_player_info(i)
+
+        infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
+
+    return infoPlayer
+
+
+# 타자 정보 입력받기
+def aaaaaaaaaaa():
+    
+    i = 1
+    while i <= 9:
+
+        # infoPlayer = []
+        infoPlayer = input("%d번 타자 정보 입력> " % i)
+
+        if not isEmpty(infoPlayer): # 아무런 값이 입력되지 않았다면 입력 다시 받기
+            continue
+
+        infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
+
+        print(type(infoPlayer))
+
+
+
+        if isNumber(infoPlayer[0]) == True:
+            print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
+            continue
+
+        elif isNumber(infoPlayer[1]) == False:
+            print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
+            continue
+        else:
+            typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
+            if (0.1 <= typeChangedBAValue <= 0.5):
+                print('옳은 값')
+                    
+        print(i)
+        i+=1
+
+
+    # theListOfTemaInfo.append(4)
+
+    # print("함수 안에서 출력\n",theListOfTemaInfo)
+    # return theListOfTemaInfo
 
 
 
 if __name__== "__main__":
 
+    # 리스트 값 선언 & 초기화
+    namePlayer = [0]
+    battingAveragePlayer = [0]
+    infoPlayers_1st = [namePlayer, battingAveragePlayer]
+    infoPlayers_2nd = [namePlayer, battingAveragePlayer]
+
     print('신나는 야구 게임!' + '\n' + '1. 데이터 입력' + '\n' + '2. 데이터 출력')
-    selectedMenu = input("메뉴선택 (1 - 2) ")   # 메뉴 선택값 받기
 
-    print(selectedMenu)
+    while(1):        
+        selectedMenu = input("메뉴선택 (1 - 2) ")   # 메뉴 선택값 받기
 
-#    playing_the_baseball_game()
+        if not isEmpty(selectedMenu):   # 아무런 값이 입력되지 않았다면 입력 다시 받기
+            continue
+        else:                           # 메뉴가 골라졌다면 루프 탈출
+            break
 
+    # 메뉴에서 1번을 선택했다면 팀 정보를 입력받기
+    if selectedMenu == '1':
+
+        # print(infoPlayers_1st[0][0])
+
+
+        # 1번 팀의 팀 이름을 리스트[0][0] 에 넣기
+        teamName = input_team_name(1)
+        infoPlayers_1st[0][0] = teamName
+        print("팀이름 : ", infoPlayers_1st[0][0])
+
+
+        # 1번 팀의 9명의 선수 정보 입력받기
+        i = 1
+        while i <= 9:
+
+            playerInfo = input_player_info(i)   # 선수 정보 받기
+            print("선수정보\n", playerInfo)
+            print(i)
+            i+=1
+
+
+        '''
+        # 2번 팀의 팀 이름을 리스트[0][0] 에 넣기
+        teamName = input_team_name(2)
+        infoPlayers_2nd[0][0] = teamName
+        print("팀이름 : ", infoPlayers_2nd[0][0])
+        '''
+
+
+
+'''
+        # 각 팀의 정보 입력 받기
+        i = 1
+        while i <= 9:
+            
+            print("%d팀의 이름을 입력하세요> " % (n_strike, n_ball, n_out))
+            print(i)
+            i+=1
+
+'''
 
     
 
