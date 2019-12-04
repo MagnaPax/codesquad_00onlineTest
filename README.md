@@ -5,7 +5,8 @@
 
 ## 대부분 손코딩으로 작성
 
-- making_random_result: 경기 결과 값을 무작위로 선택 함수
+- making_random_result: 
+  * 경기 결과 값을 무작위로 선택 함수
 			랜덤 모듈을 이용해서 네 개의 옵션 중에서 무작위로 경기 결과 값을 선택
 
 - next_hitter(hasItNewline, isThisOut, n_out): '다음 타자가 타석에 입장했습니다' 문구를 각 상황에 맞게 출력 함수
