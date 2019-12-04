@@ -1,4 +1,6 @@
 import random
+import re
+
 
 # 경기 결과 값을 무작위로 선택
 def making_random_result():
@@ -196,19 +198,21 @@ def playerInfo_error_check(infoPlayer):
             print('타율 범위 값을 넘어갔습니다')
             return False
 
+
+
+
 # 선수 정보 받기
 def input_hitter_info(howManyHittersSoFar):
     while(1):
         infoPlayer = input("%d번 타자 정보 입력> " % howManyHittersSoFar)
 
-        if not isEmpty(infoPlayer): # 아무런 값이 입력되지 않았다면 입력 다시 받기
-            continue
+        p = re.compile('.*,\s.*')           # 정규 표현식을 사용하여 ', ' 형태가 없는 모든 입력을 다시 입력받음
+        if not p.search(infoPlayer): continue
 
         infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
         errorChecked = playerInfo_error_check(infoPlayer)   # 입력받은 타자 정보가 올바른지 체크
 
-        if not errorChecked:            # 입력받은 타자 정보가 올바르지 않다면 입력 다시 받기
-            continue
+        if not errorChecked: continue       # 입력받은 타자 정보가 올바르지 않다면 입력 다시 받기
 
         else:
             infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
@@ -227,14 +231,9 @@ def choose_Menu():
     while(1):        
         selectedMenu = input("메뉴선택 (1 - 3) ")   # 메뉴 선택값 받기
 
-        if not isEmpty(selectedMenu):   # 아무런 값이 입력되지 않았다면 입력 다시 받기
-            continue
-
-        elif isNumber(selectedMenu) == False:   # 숫자 대신 문자가 입력됐다면 입력 다시 받기
-            continue
-
-        else:                           # 메뉴가 골라졌다면 루프 탈출
-            break
+        if not isEmpty(selectedMenu): continue          # 아무런 값이 입력되지 않았다면 입력 다시 받기
+        elif isNumber(selectedMenu) == False: continue  # 숫자 대신 문자가 입력됐다면 입력 다시 받기
+        else: break                                     # 메뉴가 골라졌다면 루프 탈출
 
     return selectedMenu
 
@@ -244,8 +243,8 @@ def choose_Menu():
 if __name__== "__main__":
 
     # 팀이름, 선수이름, 선수타율을 저장하기 위한 2중 리스트 선언
-    namePlayer = [0]
-    battingAveragePlayer = [0]
+    namePlayer = [0,0,0,0,0,0,0,0,0,0]
+    battingAveragePlayer = [0,0,0,0,0,0,0,0,0,0]
     infoPlayers_1st = [namePlayer, battingAveragePlayer]
     infoPlayers_2nd = [namePlayer, battingAveragePlayer]
 
@@ -271,10 +270,20 @@ if __name__== "__main__":
         while i <= 9:
 
             infoPlayer = input_hitter_info(i)       # 선수 정보 입력
-            print("메인으로 넘어온 값\n",infoPlayer[0], "\n",infoPlayer[1])
+            # print("메인으로 넘어온 값\n",infoPlayer)
 
-            print("메인으로 넘어온 값\n",infoPlayer)
+            infoPlayers_1st[0][i] = infoPlayer[0]
+            infoPlayers_1st[1][i] = infoPlayer[1]
+            # print(i,"번 선수", "\n이름: ",infoPlayers_1st[0][i], "\n타율:",infoPlayers_1st[1][i])
+            # print(infoPlayers_1st[0][i], infoPlayers_1st[1][i])
 
-            print("i값: ", i)
+
+            # print("i값: ", i)
             i+=1
+
+        i = 1
+        while i <= 9:
+            print(i,"번 선수", "\n이름: ",infoPlayers_1st[0][i], "\n타율:",infoPlayers_1st[1][i])
+        i+=1
+
 
