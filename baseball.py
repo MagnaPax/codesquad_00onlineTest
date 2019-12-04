@@ -173,18 +173,20 @@ def input_team_name(i):
 
 
 
+
+
+
 # 입력된 선수 정보가 제대로 들어왔는지 확인. 잘못된 값이면 False 리턴
 def playerInfo_error_check(infoPlayer):
 
     if isNumber(infoPlayer[0]) == True:
         print('선수 이름이 숫자로 잘못 입력 되었습니다.\n')
-        #continue
         return False
 
     elif isNumber(infoPlayer[1]) == False:
         print('타율이 숫자가 아닌 문자가 잘못 입력 되었습니다.\n')
-        #continue
         return False
+
     else:
         typeChangedBAValue = float(infoPlayer[1])   # 타율 값이 들어있는 infoPlayer[1] 에서 값을 읽어서 float으로 형 변환 후 typeChangedBAValue 변수에 저장
         if (0.1 <= typeChangedBAValue <= 0.5):
@@ -194,37 +196,28 @@ def playerInfo_error_check(infoPlayer):
             print('타율 범위 값을 넘어갔습니다')
             return False
 
-
-
-
-# 9명의 선수 정보 입력받기
-def input_nine_hitters_info():
-    
-    i = 1
-    while i <= 9:
-
-        # infoPlayer = []
-        infoPlayer = input("%d번 타자 정보 입력> " % i)
+# 선수 정보 받기
+def input_hitter_info(howManyHittersSoFar):
+    while(1):
+        infoPlayer = input("%d번 타자 정보 입력> " % howManyHittersSoFar)
 
         if not isEmpty(infoPlayer): # 아무런 값이 입력되지 않았다면 입력 다시 받기
             continue
 
         infoPlayer = infoPlayer.split(', ') # 콤마다음에 공백한칸이 나올때마다 문자열 값을 나눠서 변수에 저장. 리스트 형식으로 저장됨.
-        
-        infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
-
         errorChecked = playerInfo_error_check(infoPlayer)   # 입력받은 타자 정보가 올바른지 체크
 
         if not errorChecked:            # 입력받은 타자 정보가 올바르지 않다면 입력 다시 받기
             continue
 
         else:
-            print(infoPlayer)
+            infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
+            return infoPlayer
+
 
 
                     
-        print(i)
-        i+=1
+
 
 
 
@@ -236,8 +229,10 @@ def choose_Menu():
 
         if not isEmpty(selectedMenu):   # 아무런 값이 입력되지 않았다면 입력 다시 받기
             continue
+
         elif isNumber(selectedMenu) == False:   # 숫자 대신 문자가 입력됐다면 입력 다시 받기
             continue
+
         else:                           # 메뉴가 골라졌다면 루프 탈출
             break
 
@@ -272,5 +267,15 @@ if __name__== "__main__":
 
 
         # 1번 팀의 9명의 선수 정보 입력받기
-        input_nine_hitters_info()
+        i = 1
+        while i <= 9:
+
+            infoPlayer = input_hitter_info(i)       # 선수 정보 입력
+            # print("메인으로 넘어온 값\n",infoPlayer[0], "\n",infoPlayer[1])
+            infoPlayer[1] = "%0.3f" % float(infoPlayer[1])  # 타율을 소수점 셋째 자리까지만 받기
+
+            print("메인으로 넘어온 값\n",infoPlayer)
+
+            print("i값: ", i)
+            i+=1
 
